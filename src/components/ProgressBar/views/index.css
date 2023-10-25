@@ -1,0 +1,26 @@
+ul {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	width: 100%;
+}
+li {
+	list-style: none;
+	height: 15px;
+	width: 15px;
+	background-color: black;
+	border-radius: 50%;
+}
+
+li.active {
+	background-color: blue;
+}
+.lineHeight {
+	height: 4px;
+	background-color: black;
+	width: 68%;
+	position: relative;
+	top: -50px;
+	z-index: -1;
+	left: -15px;
+}
