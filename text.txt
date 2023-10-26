@@ -1,0 +1,77 @@
+					{currentStep === 1 && (
+						<>
+							<input
+								type="text"
+								placeholder="nome"
+								defaultValue={formData.name}
+								onChange={handleInputChange}
+							/>							<InputBox
+								type="text"
+								placeholder="Email"
+								icon={emailIcon}
+								handleInputStringChange={handleInputStringChange}
+							/>
+							<InputBox
+								type="password"
+								placeholder="Senha"
+								icon={passwordIcon}
+								handleInputStringChange={handleInputStringChange}
+							/>
+						</>
+					)}
+
+					{currentStep === 2 && (
+						<>
+							<SelectBox
+								title={'Qual o seu objetivo ?'}
+								options={['', 'Aposentadoria', 'Desconto de IR']}
+								handleSelectChange={handleSelectChange}
+							/>
+							<InputBox
+								type="number"
+								placeholder="Idade que gostaria de resgatar ?"
+								icon={userIcon}
+								handleInputNumberChange={handleInputNumberChange}
+							/>
+							<InputBox
+								type="number"
+								placeholder="Valor inicial"
+								icon={emailIcon}
+								handleInputNumberChange={handleInputNumberChange}
+							/>
+							<InputBox
+								type="number"
+								placeholder="Quanto iria depositar por mês ?"
+								icon={passwordIcon}
+								handleInputNumberChange={handleInputNumberChange}
+							/>
+						</>
+					)}
+
+					{currentStep === 3 && (
+						<>
+							<SelectBox
+								title={'IR completo ou simples ?'}
+								options={['', 'Completo', 'Simples']}
+								handleSelectChange={handleSelectChange}
+							/>
+							<InputBox
+								type="number"
+								placeholder="Idade que gostaria de resgatar ?"
+								icon={userIcon}
+								handleInputNumberChange={handleInputNumberChange}
+							/>
+							<InputBox
+								type="number"
+								placeholder="Valor inicial"
+								icon={emailIcon}
+								handleInputNumberChange={handleInputNumberChange}
+							/>
+							<InputBox
+								type="number"
+								placeholder="Quanto iria depositar por mês ?"
+								icon={passwordIcon}
+								handleInputNumberChange={handleInputNumberChange}
+							/>
+						</>
+					)}

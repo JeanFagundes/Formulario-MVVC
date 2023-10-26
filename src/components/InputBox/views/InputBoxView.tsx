@@ -1,14 +1,26 @@
 import { InputBoxProps } from '../types/InputBoxProps';
 
 export const InputBoxView = ({
+	id,
 	icon,
 	placeholder,
 	type,
-	handleInputChange,
+	handleInputStringChange,
+	handleInputNumberChange,
+	isFinalQuestion,
 }: InputBoxProps) => {
+	let changeElement;
+	if (type === 'number') {
+		changeElement = handleInputNumberChange;
+	} else {
+		changeElement = handleInputStringChange;
+	}
 	return (
 		<>
 			<input
+				id={id.toString()}
+				disabled={isFinalQuestion}
+				onChange={changeElement}
 				autoComplete="off"
 				type={type}
 				placeholder={placeholder}

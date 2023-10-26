@@ -4,6 +4,8 @@ export const SelectBoxView = ({
 	title,
 	options,
 	handleSelectChange,
+	isFinalQuestion,
+	id,
 }: SelectBoxProps) => {
 	return (
 		<>
@@ -17,8 +19,11 @@ export const SelectBoxView = ({
 				{title}
 			</label>
 			<select
+				id={id.toString()}
+				onChange={handleSelectChange}
+				disabled={isFinalQuestion}
 				style={{
-					width: '87.5%',
+					width: 'calc(80% + 40px)',
 					borderRadius: '6px',
 					height: '40px',
 					boxShadow: '0px 2px 4px 0px rgba(0, 0, 0, 0.50)',

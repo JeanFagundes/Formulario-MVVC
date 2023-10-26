@@ -1,6 +1,6 @@
 export interface ProgressBarProps {
-	handleNextStep: () => void;
+	handleNextStep: (e: React.MouseEvent<HTMLButtonElement>) => void;
 	currentStep: number;
 	setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
-	Steps: number[];
+	StepsBar: number[];
 }

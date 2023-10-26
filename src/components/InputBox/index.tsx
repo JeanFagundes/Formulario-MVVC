@@ -5,14 +5,21 @@ export const InputBox = ({
 	icon,
 	placeholder,
 	type,
-	handleInputChange,
+	handleInputStringChange,
+	handleInputNumberChange,
+	isFinalQuestion,
+	id,
 }: InputBoxProps) => {
 	return (
 		<InputBoxView
+			id={id}
+			disabled
 			icon={icon}
 			placeholder={placeholder}
 			type={type}
-			handleInputChange={handleInputChange}
+			handleInputStringChange={handleInputStringChange}
+			handleInputNumberChange={handleInputNumberChange}
+			isFinalQuestion={isFinalQuestion}
 		/>
 	);
 };

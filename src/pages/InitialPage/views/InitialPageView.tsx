@@ -9,34 +9,22 @@ import { useState } from 'react';
 import { FormDataProps } from '../types/FormDataProps';
 import { SelectBox } from 'components/SelectBox';
 export const InitialPageView = ({
-	Steps,
+	StepsBar,
 	handleNextStep,
 	currentStep,
 	setCurrentStep,
+	handleInputStringChange,
+	handleInputNumberChange,
+	handleSelectChange,
+	inputValueNumber,
+	inputValueString,
+	selectValue,
+	StepsQuestion,
+	verifyLastQuestion,
+	isFinalQuestion,
 }: InitialPageProps) => {
-	const [formData, setFormData] = useState<FormDataProps>({
-		name: '',
-		email: '',
-		password: '',
-		goal: '',
-		ageToRedeem: 0,
-		initialValue: 0,
-		monthlyContribution: 0,
-		iR: '',
-		inss: '',
-		salary: 0,
-	});
-	const [selectValue, setSelectValue] = useState('');
-	const [inputValue, setInputvalue] = useState('');
 
-	const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-		const value = event.target.value; // Obtenha o valor selecionado do evento
-		setSelectValue(value);
-	};
-	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const value = event.target.value; // Obtenha o valor selecionado do evento
-		setSelectValue(value);
-	};
+
 
 	return (
 		<div
@@ -89,7 +77,7 @@ export const InitialPageView = ({
 				}}
 			>
 				<ProgressBar
-					Steps={Steps}
+					StepsBar={StepsBar}
 					currentStep={currentStep}
 					handleNextStep={handleNextStep}
 					setCurrentStep={setCurrentStep}
@@ -111,92 +99,58 @@ export const InitialPageView = ({
 						alignItems: 'center',
 					}}
 				>
-					{currentStep === 1 && (
-						<>
-							<InputBox
-								type="text"
-								placeholder="Nome"
-								icon={userIcon}
-								handleInputChange={handleInputChange}
-							/>
-							<InputBox
-								type="text"
-								placeholder="Email"
-								icon={emailIcon}
-								handleInputChange={handleInputChange}
-							/>
-							<InputBox
-								type="password"
-								placeholder="Senha"
-								icon={passwordIcon}
-								handleInputChange={handleInputChange}
-							/>
-						</>
-					)}
+					<>
+						{StepsQuestion[currentStep - 1].map((item) => (
+							<>
+								<input
+									id={item.id.toString()}
+									type="text"
+									onChange={(event) => handleInputChange(event, item.id)}
+								/>
 
-					{currentStep === 2 && (
-						<>
-							<SelectBox
-								title={'Qual o seu objetivo ?'}
-								options={['', 'Aposentadoria', 'Desconto de IR']}
-								handleSelectChange={handleSelectChange}
+								{item.options.length ? (
+									<SelectBox
+										id={item.id}
+										disabled
+										title={item.question}
+										options={item.options}
+										handleSelectChange={handleSelectChange}
+										isFinalQuestion={isFinalQuestion}
+									/>
+								) : (
+									<InputBox
+										id={item.id}
+										disabled
+										type={item.type}
+										placeholder={item.placeholder}
+										icon={userIcon}
+										handleInputStringChange={handleInputStringChange}
+										handleInputNumberChange={handleInputNumberChange}
+										isFinalQuestion={isFinalQuestion}
+									/>
+								)}
+							</>
+						))}
+						{currentStep !== StepsQuestion.length ? (
+							<Button
+								title={'Continuar'}
+								border={'fill'}
+								handleNextStep={(e: React.MouseEvent<HTMLButtonElement>) => {
+									e.preventDefault();
+									handleNextStep(e);
+								}}
 							/>
-							<InputBox
-								type="number"
-								placeholder="Idade que gostaria de resgatar ?"
-								icon={userIcon}
-								handleInputChange={handleInputChange}
+						) : (
+							<Button
+								title={'Gerar Relatorio'}
+								border={'fill'}
+								handleNextStep={(e: React.MouseEvent<HTMLButtonElement>) => {
+									e.preventDefault();
+									handleNextStep(e);
+								}}
 							/>
-							<InputBox
-								type="number"
-								placeholder="Valor inicial"
-								icon={emailIcon}
-								handleInputChange={handleInputChange}
-							/>
-							<InputBox
-								type="number"
-								placeholder="Quanto iria depositar por mês ?"
-								icon={passwordIcon}
-								handleInputChange={handleInputChange}
-							/>
-						</>
-					)}
-
-					{currentStep === 3 && (
-						<>
-							<SelectBox
-								title={'IR completo ou simples ?'}
-								options={['', 'Completo', 'Simples']}
-								handleSelectChange={handleSelectChange}
-							/>
-							<InputBox
-								type="number"
-								placeholder="Idade que gostaria de resgatar ?"
-								icon={userIcon}
-								handleInputChange={handleInputChange}
-							/>
-							<InputBox
-								type="number"
-								placeholder="Valor inicial"
-								icon={emailIcon}
-								handleInputChange={handleInputChange}
-							/>
-							<InputBox
-								type="number"
-								placeholder="Quanto iria depositar por mês ?"
-								icon={passwordIcon}
-								handleInputChange={handleInputChange}
-							/>
-						</>
-					)}
-					<Button
-						title={'Continuar'}
-						border={'fill'}
-						handleNextStep={(e: React.MouseEvent<HTMLButtonElement>) => {
-							e.preventDefault(); // Evita o comportamento padrão do formulário
-							handleNextStep();
-						}}
-					/>
+						)}
+					</>
 				</form>
 			</div>
 		</div>

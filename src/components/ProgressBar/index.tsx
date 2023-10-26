@@ -2,14 +2,14 @@ import { ProgressBarProps } from './types/ProgressBarProps';
 import { ProgressBarView } from './views/ProgressBarView';
 
 export const ProgressBar = ({
-	Steps,
+	StepsBar,
 	currentStep,
 	handleNextStep,
 	setCurrentStep,
 }: ProgressBarProps) => {
 	return (
 		<ProgressBarView
-			Steps={Steps}
+			StepsBar={StepsBar}
 			currentStep={currentStep}
 			handleNextStep={handleNextStep}
 			setCurrentStep={setCurrentStep}
